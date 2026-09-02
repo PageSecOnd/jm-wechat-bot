@@ -1,0 +1,30 @@
+services:
+  bot:
+    build: .
+    restart: unless-stopped
+    environment:
+      JMWXBOT_DATA_DIR: /data
+      JMWXBOT_DOWNLOAD_CONCURRENCY: "2"
+      JMWXBOT_SEARCH_LIMIT: "8"
+      JMWXBOT_MAX_SEND_MB: "500"
+      JMWXBOT_CACHE_TTL_DAYS: "7"
+      JMWXBOT_CACHE_MAX_GB: "20"
+      JMWXBOT_CACHE_MIN_FREE_PERCENT: "20"
+      JMWXBOT_CACHE_CLEANUP_INTERVAL_HOURS: "6"
+      # 每日自动签到（北京时间）：到点后后台检查，失败最多重试 3 次/天。
+      JMWXBOT_DAILY_SIGNIN_HOUR: "8"
+      JMWXBOT_DAILY_SIGNIN_CHECK_INTERVAL_MINUTES: "30"
+      JMWXBOT_DAILY_SIGNIN_MAX_ATTEMPTS: "3"
+      # 只读 Web 管理控制台。留空即禁用；建议在 .env 中设置一个长随机 token。
+      JMWXBOT_ADMIN_TOKEN: "${JMWXBOT_ADMIN_TOKEN:-}"
+      JMWXBOT_ADMIN_HOST: "0.0.0.0"
+      JMWXBOT_ADMIN_PORT: "8787"
+      JMWXBOT_ADMIN_TIMEZONE: "Asia/Shanghai"
+      JMWXBOT_ADMIN_SECURE_COOKIE: "${JMWXBOT_ADMIN_SECURE_COOKIE:-false}"
+      # 如需自定义 JM 配置：
+      # JMWXBOT_JM_OPTION_FILE: /config/jmcomic.yml
+    ports:
+      - "127.0.0.1:8787:8787"
+    volumes:
+      - ./data:/data
+      # - ./config/jmcomic.yml:/config/jmcomic.yml:ro

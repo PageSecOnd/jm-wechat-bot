@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=70"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jm-wechat-bot"
+version = "1.0.0"
+description = "Self-hosted WeChat bot for JMComic with search, downloads, account isolation, daily check-in, and a web admin dashboard"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.12"
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3.12",
+  "Operating System :: POSIX :: Linux",
+]
+dependencies = [
+  "httpx>=0.27,<1",
+  "pycryptodome>=3.20,<4",
+  "qrcode>=7.4,<9",
+  "jmcomic>=2.7.5,<3",
+  "img2pdf>=0.6.3,<1",
+  "Pillow>=10,<13",
+  "aiohttp>=3.10,<4",
+]
+
+[project.scripts]
+jmwxbot = "jmwxbot.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

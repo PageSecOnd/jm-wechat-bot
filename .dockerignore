@@ -1,0 +1,13 @@
+.git
+.github
+.venv
+__pycache__
+*.py[cod]
+*.sqlite3*
+.env
+data
+config/jmcomic.yml
+*.zip
+.DS_Store
+.idea
+.vscode

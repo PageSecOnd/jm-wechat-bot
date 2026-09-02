@@ -1,0 +1,23 @@
+version: '2.1'
+log: true
+
+# JMWXBOT 会强制覆盖 dir_rule.base_dir/rule，确保 account + peer 文件隔离。
+# 这里适合放公共 JM 网络、代理等配置。
+# 私人收藏夹 AVS 建议不要放在全局配置里；v0.3.0 的 /fav 使用每个微信联系人的独立 profile。
+client:
+  cache: null
+  domain: []
+  impl: html
+  retry_times: 5
+  postman:
+    meta_data:
+      proxies: {}
+
+download:
+  cache: true
+  image:
+    decode: true
+    suffix: .jpg
+  threading:
+    image: 20
+    photo: 4

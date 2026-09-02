@@ -1,0 +1,22 @@
+[Unit]
+Description=JM Weixin iLink Bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=jmwxbot
+Group=jmwxbot
+WorkingDirectory=/opt/jmwxbot
+Environment=JMWXBOT_DATA_DIR=/var/lib/jmwxbot
+ExecStart=/opt/jmwxbot/.venv/bin/jmwxbot run
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/jmwxbot
+
+[Install]
+WantedBy=multi-user.target
